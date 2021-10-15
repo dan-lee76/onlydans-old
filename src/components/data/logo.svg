@@ -1,37 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="A site used by only dans"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Only Dans</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="startup">
-      <div class="center">
-    <div class="onlydans"><svg viewBox="0 0 1019 224" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<svg width="1019pt" height="224pt" viewBox="0 0 1019 224" version="1.1" xmlns="http://www.w3.org/2000/svg">
       <g id="#ffffffff">
       </g>
       <g id="#2cade5ff">
@@ -45,19 +12,4 @@
       <path fill="#000000" opacity="1.00" d=" M 244.87 60.48 C 260.82 57.04 278.99 59.48 291.55 70.55 C 302.26 79.77 306.96 94.21 307.14 108.02 C 307.20 133.36 307.15 158.70 307.17 184.04 C 303.31 184.04 299.44 184.04 295.58 184.04 C 295.56 159.80 295.62 135.56 295.56 111.33 C 295.44 100.48 292.69 89.08 285.09 80.97 C 278.10 73.13 267.28 69.78 257.00 70.03 C 246.33 69.60 235.62 73.59 227.73 80.76 C 219.00 88.59 214.12 100.32 214.09 111.99 C 214.08 136.01 214.09 160.02 214.08 184.04 C 210.22 184.04 206.36 184.03 202.49 184.06 C 202.43 143.37 202.49 102.69 202.46 62.00 C 206.33 62.00 210.21 62.00 214.08 62.00 C 214.08 69.53 214.09 77.06 214.08 84.59 C 221.00 73.30 231.57 63.30 244.87 60.48 Z" />
       <path fill="#000000" opacity="1.00" d=" M 384.45 62.01 C 388.96 62.00 393.47 62.00 397.99 62.00 C 414.95 98.54 431.93 135.07 448.92 171.59 C 463.68 135.07 478.43 98.55 493.13 62.00 C 497.40 62.00 501.68 62.00 505.96 62.00 C 489.20 101.96 472.41 141.90 455.64 181.85 C 451.63 191.56 447.42 201.40 440.67 209.57 C 435.14 216.52 426.92 221.32 418.09 222.48 C 407.86 224.07 397.47 221.66 388.02 217.75 C 389.37 214.35 390.73 210.96 392.06 207.56 C 400.04 211.71 409.27 212.70 418.11 211.61 C 422.95 210.80 427.35 208.18 430.63 204.56 C 436.27 198.45 439.96 190.85 443.21 183.27 C 423.64 142.83 404.02 102.43 384.45 62.01 Z" />
       </g>
-      </svg></div>
-      </div>
-      </div>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
-</html>
+      </svg>
