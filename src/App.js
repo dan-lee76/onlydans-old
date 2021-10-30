@@ -11,7 +11,7 @@ class App extends Component {
             arg1:"posts",
             error: null,
             postData: [],
-            display: []
+            display: [],
         }
     }
 
@@ -48,7 +48,7 @@ class App extends Component {
         this.forceUpdate()
     }
     render() { 
-        const { error, postData } = this.state;
+        const { error, postData} = this.state;
         var handleToUpdate = this.handleToUpdate;
         if (error) {
             return <div>

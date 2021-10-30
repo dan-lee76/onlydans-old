@@ -10,7 +10,6 @@ class Button_Selector extends Component {
 
     render() { 
         var handleToUpdate = this.props.handleToUpdate;
-        console.log(this.props.activePage);
         let posts = <button onClick={() => handleToUpdate('posts')} className={styles.text_wrapper}><a className={styles.text}>Posts</a></button>;
         let media = <button onClick={() => handleToUpdate('media')} className={styles.text_wrapper}><a className={styles.text}>Media</a></button>;
         let archive = <button onClick={() => handleToUpdate('archive')} className={styles.text_wrapper}><a className={styles.text}>Archive</a></button>;

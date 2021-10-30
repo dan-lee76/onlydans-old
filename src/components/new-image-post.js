@@ -18,7 +18,6 @@ class Post_Image extends Component {
         if(this.props.forceMedia === "True"){
 
         }
-        console.log(this.props.d_location, this.props.d_name);
         return (
          <div class={styles.postSection}>
             <div className={styles.banner}><Post_banner date={this.props.date}/></div>

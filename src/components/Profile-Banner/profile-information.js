@@ -13,7 +13,6 @@ class Profile_brief extends Component {
             location:this.props.loc,
             link:this.props.link,
             profile_image:this.props.image,
-            post_amount:this.props.post_amount
         }
     }
     render() { 
@@ -25,7 +24,7 @@ class Profile_brief extends Component {
                     <a href="https://danlee.uk"><FontAwesomeIcon className={styles.backButton} icon={faArrowLeft} /></a>
                     <div className={styles.textArea}>
                     <h1 className={styles.topName}>{this.state.name}</h1>
-                    <h1 className={styles.underTopName}>{this.state.post_amount} Posts</h1>
+                    <h1 className={styles.underTopName}>{this.props.post_amount} Posts</h1>
                     </div>
                     </div>
                 </div>
