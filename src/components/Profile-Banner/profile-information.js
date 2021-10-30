@@ -20,7 +20,7 @@ class Profile_brief extends Component {
         return ( 
             <div>
                 <div className={styles.banner}>
-                    <div class={styles.bannerImg} style={{backgroundImage:"url(https://picsum.photos/750)"}}></div>
+                    <div class={styles.bannerImg} style={{backgroundImage:"url(/img/banner.jpg)"}}></div>
                     <div className={styles.stickyName}>
                     <a href="https://danlee.uk"><FontAwesomeIcon className={styles.backButton} icon={faArrowLeft} /></a>
                     <div className={styles.textArea}>
