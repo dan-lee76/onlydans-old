@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from "./profile-information.module.css"
+import EmailSignup from './email-signup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
@@ -29,7 +30,8 @@ class Profile_brief extends Component {
                     </div>
                 </div>
                 <div className={styles.userSection}>
-                    <img className={styles.profilePic} src={this.state.profile_image} alt="DANS IMAGE"/>
+                <img className={styles.profilePic} src={this.state.profile_image} alt="DANS IMAGE"/>
+                <EmailSignup></EmailSignup>
                 <h1 className={styles.name}>{this.state.name}</h1>
                 <h1 className={styles.username}>{this.state.username}</h1>
                 <p className={styles.userText}>{this.state.description}</p>

@@ -18,12 +18,12 @@ class Post_footer extends Component {
         }
     }
     downloadFile = () => {
-        console.log(this.props.location, this.props.name);
-        saveAs(this.props.location, this.props.name);
+        let name = this.props.location
+        saveAs(this.props.location, name.substring(4));
     }
     render() { 
         let download;
-        if(this.props.name === 'null' || this.props.location === 'null'){
+        if(this.props.location === 'null'){
             download=null
         }
         else{

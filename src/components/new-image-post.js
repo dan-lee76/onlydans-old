@@ -11,9 +11,13 @@ class Post_Image extends Component {
     }
     
     render() { 
-        let img
+        let img, footer;
         if(this.props.image !== "null"){
             img = <img className={styles.image} src={this.props.image} alt="thing"/>
+            footer = <Post_footer location={this.props.image}/>
+        }
+        else{
+            footer = <Post_footer location="null"/>
         }
         if(this.props.forceMedia === "True"){
 
@@ -24,7 +28,7 @@ class Post_Image extends Component {
             <div className={styles.content}>
             <p className={styles.text}>{this.props.content}</p>
             {img}
-            <Post_footer location={this.props.d_location} name={this.props.d_name} image={this.props.download}/>
+            {footer}
             </div>
         </div>
         );
