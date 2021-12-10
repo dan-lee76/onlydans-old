@@ -7,13 +7,27 @@ class Post_Image extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            zoomed: true,
+            imageZoomed: <div></div>
          }
     }
     
+    makeImgBig(){
+        console.log("click");
+        if(this.state.zoomed){
+            this.setState({zoomed: !this.state.zoomed})
+            this.setState({imageZoomed:<div onClick={this.makeImgBig.bind(this)} className={styles.imageZoomedBG}><img className={styles.imageZoomed} src={this.props.image} alt={this.props.image}/></div>})
+        }
+        else{
+            this.setState({zoomed: !this.state.zoomed})
+            this.setState({imageZoomed: <div></div>})
+        }
+    }
+
     render() { 
         let img, footer;
         if(this.props.image !== "null"){
-            img = <img className={styles.image} src={this.props.image} alt="thing"/>
+            img = <div onClick={this.makeImgBig.bind(this)} className={styles.imgArea}><img className={styles.imgStandard} src={this.props.image} alt={this.props.image}/></div>
             footer = <Post_footer location={this.props.image}/>
         }
         else{
@@ -28,6 +42,7 @@ class Post_Image extends Component {
             <div className={styles.content}>
             <p className={styles.text}>{this.props.content}</p>
             {img}
+            {this.state.imageZoomed}
             {footer}
             </div>
         </div>

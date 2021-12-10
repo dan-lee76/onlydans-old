@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import Pageclip from 'pageclip';
-const pageclipAPIKey = 'api_svgWAuW8mbGuUbTxj58HXqvOq988Jie8';
-const pageclip = new Pageclip(pageclipAPIKey)
 
 class EmailSignup extends Component {
     constructor(props) {
@@ -12,9 +9,21 @@ class EmailSignup extends Component {
          }
     }
 
-    sendData(){
-        console.log('called');
-        pageclip.send({some: 'data'})
+    sendData(event){
+        event.preventDefault();
+        const Pageclip = require('pageclip')
+        let pageclip, promise, data
+        pageclip = new Pageclip('api_svgWAuW8mbGuUbTxj58HXqvOq988Jie8')
+
+        // Send one item
+        data = {some: 'data'}
+        promise = pageclip.send('test',data).then((response) => {
+        console.log(
+            response.status, // 200
+            response.form, // 'default'
+            response.data    // [Item({some: 'data'})]
+        )
+        })
     }
 
     render() { 
