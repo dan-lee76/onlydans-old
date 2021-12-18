@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import Post_Image from './components/new-image-post';
 import Profile_brief from './components/Profile-Banner/profile-information';
 import Button_Selector from './components/button-selector';
@@ -12,6 +13,8 @@ class App extends Component {
             error: null,
             postData: [],
             display: [],
+            limit: 5,
+            hasMore: true
         }
     }
 
@@ -21,7 +24,7 @@ class App extends Component {
           .then(
             (result) => {
               this.setState({
-                postData: result,
+                postData: result.reverse(),
                 display:result.map((p) => (<Post_Image d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>)).reverse()
               });
             },
@@ -47,6 +50,18 @@ class App extends Component {
         }
         this.forceUpdate()
     }
+
+    fetchMoreData = () => {
+      console.log(this.state.limit)
+      if (this.state.limit >= this.state.postData.length) {
+        this.setState({ hasMore: false });
+        return;
+      }
+        this.setState({
+          limit: this.state.limit+5
+        });
+    };
+
     render() { 
         const { error, postData} = this.state;
         var handleToUpdate = this.handleToUpdate;
@@ -63,7 +78,21 @@ class App extends Component {
                 <div className="content">
                 <Profile_brief name="Dan Lee" username="@dan-lee76" dsc="The onlydans exclusive site owner ;)" image={logo} post_amount={postData.length}/>
                 <Button_Selector handleToUpdate={handleToUpdate.bind(this)} activePage={this.state.arg1}/>
-                {this.state.display}
+                <InfiniteScroll
+                dataLength={this.state.limit}
+                next={this.fetchMoreData}
+                hasMore={this.state.hasMore}
+                loader={<h4>Loading...</h4>}
+                endMessage={
+                  <p style={{ textAlign: "center" }}>
+                    <b>Yay! You have seen it all</b>
+                  </p>
+                }
+              >
+
+                {postData.map((p, index) => {if(index < this.state.limit){return <Post_Image d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}})}
+                  
+                </InfiniteScroll>
                 </div>
                 </div>
             );
