@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import ScrollToTop from "react-scroll-to-top";
 import Post_Image from './components/new-image-post';
 import Profile_brief from './components/Profile-Banner/profile-information';
 import Button_Selector from './components/button-selector';
@@ -18,14 +19,15 @@ class App extends Component {
         }
     }
 
-    componentDidMount() {
+      //Reads the json file
+    componentDidMount() { 
         fetch(process.env.PUBLIC_URL + '/dddsexytimedannybabyreccomends69420_donaldducknsfw2021_freedownload_novirus.json')
           .then(res => res.json())
           .then(
             (result) => {
               this.setState({
                 postData: result.reverse(),
-                display:result.map((p) => (<Post_Image d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>)).reverse()
+                display: result.map((p, index) => {if(index < this.state.limit){return <Post_Image d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}})
               });
             },
             (error) => {
@@ -36,14 +38,16 @@ class App extends Component {
           )
         }
 
-    handleToUpdate(someArg){
+    handleToUpdate(){
         const postData = this.state.postData;
-        this.setState({arg1:someArg});
+        var someArg = this.state.arg1;
+        var limit = this.state.limit;
         if(someArg==="posts"){
-            this.setState({display:postData.map((p) => (<Post_Image d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>)).reverse()});
+          console.log("ping");
+            this.setState({display:postData.map((p, index) => {if(index < limit){return <Post_Image d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}})});
         }
         else if(someArg==="media"){
-            this.setState({display:postData.map((p) => {if(p.image==="null"){return null;}else{return <Post_Image d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}}).reverse()});
+            this.setState({display:postData.map((p, index) => {if(index < limit){if(p.image==="null"){limit++; return null;}else{return <Post_Image d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}}})});
         }
         else if(someArg==="archive"){
             this.setState({display:null});
@@ -60,11 +64,18 @@ class App extends Component {
         this.setState({
           limit: this.state.limit+5
         });
+      this.handleToUpdate();
     };
+
+    changeDisplayState(stateTo){
+      this.setState({arg1: stateTo, limit:5, hasMore:true}, function() {
+        this.handleToUpdate();
+      });
+    }
 
     render() { 
         const { error, postData} = this.state;
-        var handleToUpdate = this.handleToUpdate;
+        var changeDisplayState = this.changeDisplayState;
         if (error) {
             return <div>
                 <h2>ERROR</h2>
@@ -75,9 +86,10 @@ class App extends Component {
         else{
             return ( 
                 <div>
+                  <ScrollToTop smooth/>
                 <div className="content">
                 <Profile_brief name="Dan Lee" username="@dan-lee76" dsc="The onlydans exclusive site owner ;)" image={logo} post_amount={postData.length}/>
-                <Button_Selector handleToUpdate={handleToUpdate.bind(this)} activePage={this.state.arg1}/>
+                <Button_Selector handleToUpdate={changeDisplayState.bind(this)} activePage={this.state.arg1}/>
                 <InfiniteScroll
                 dataLength={this.state.limit}
                 next={this.fetchMoreData}
@@ -90,8 +102,8 @@ class App extends Component {
                 }
               >
 
-                {postData.map((p, index) => {if(index < this.state.limit){return <Post_Image d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}})}
-                  
+                {this.state.display}   
+
                 </InfiniteScroll>
                 </div>
                 </div>
