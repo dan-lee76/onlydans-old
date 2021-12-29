@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Post_banner from './post-name-banner';
-import Post_footer from './post-footer';
+import PostBanner from './post-name-banner';
+import PostFooter from './post-footer';
 import styles from './new-image-post.module.css'
 import "./post.css"
 class Post_Image extends Component {
@@ -28,17 +28,17 @@ class Post_Image extends Component {
         let img, footer;
         if(this.props.image !== "null"){
             img = <div onClick={this.makeImgBig.bind(this)} className={styles.imgArea}><img className={styles.imgStandard} src={this.props.image} alt={this.props.image}/></div>
-            footer = <Post_footer location={this.props.image}/>
+            footer = <PostFooter location={this.props.image}/>
         }
         else{
-            footer = <Post_footer location="null"/>
+            footer = <PostFooter location="null"/>
         }
         if(this.props.forceMedia === "True"){
 
         }
         return (
          <div class={styles.postSection}>
-            <div className={styles.banner}><Post_banner date={this.props.date}/></div>
+            <div className={styles.banner}><PostBanner date={this.props.date}/></div>
             <div className={styles.content}>
             <p className={styles.text}>{this.props.content}</p>
             {img}

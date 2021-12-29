@@ -29,7 +29,7 @@ class Profile_brief extends Component {
                     </div>
                 </div>
                 <div className={styles.userSection}>
-                <img className={styles.profilePic} src={this.state.profile_image} alt="DANS IMAGE"/>
+                <img className={styles.profilePic} src={this.state.profile_image} alt="Dans Face"/>
                 <h1 className={styles.name}>{this.state.name}</h1>
                 <h1 className={styles.username}>{this.state.username}</h1>
                 <p className={styles.userText}>{this.state.description}</p>

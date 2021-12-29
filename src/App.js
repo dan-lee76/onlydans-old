@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ScrollToTop from "react-scroll-to-top";
-import Post_Image from './components/new-image-post';
-import Profile_brief from './components/Profile-Banner/profile-information';
-import Button_Selector from './components/button-selector';
+import PostImage from './components/new-image-post';
+import ProfileBrief from './components/Profile-Banner/profile-information';
+import ButtonSelector from './components/button-selector';
 import './components/post.css';
 import logo from "./logo.png";
 class App extends Component {
@@ -27,7 +27,7 @@ class App extends Component {
             (result) => {
               this.setState({
                 postData: result.reverse(),
-                display: result.map((p, index) => {if(index < this.state.limit){return <Post_Image d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}})
+                display: result.map((p, index) => {if(index < this.state.limit){return <PostImage d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}else{return null;}})
               });
             },
             (error) => {
@@ -44,10 +44,10 @@ class App extends Component {
         var limit = this.state.limit;
         if(someArg==="posts"){
           console.log("ping");
-            this.setState({display:postData.map((p, index) => {if(index < limit){return <Post_Image d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}})});
+            this.setState({display:postData.map((p, index) => {if(index < limit){return <PostImage d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}else{return null;}})});
         }
         else if(someArg==="media"){
-            this.setState({display:postData.map((p, index) => {if(index < limit){if(p.image==="null"){limit++; return null;}else{return <Post_Image d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}}})});
+            this.setState({display:postData.map((p, index) => {if(index < limit){if(p.image==="null"){limit++; return null;}else{return <PostImage d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}}else{return null;}})});
         }
         else if(someArg==="archive"){
             this.setState({display:null});
@@ -88,8 +88,8 @@ class App extends Component {
                 <div>
                   <ScrollToTop smooth/>
                 <div className="content">
-                <Profile_brief name="Dan Lee" username="@dan-lee76" dsc="The onlydans exclusive site owner ;)" image={logo} post_amount={postData.length}/>
-                <Button_Selector handleToUpdate={changeDisplayState.bind(this)} activePage={this.state.arg1}/>
+                <ProfileBrief name="Dan Lee" username="@dan-lee76" dsc="The onlydans exclusive site owner ;)" image={logo} post_amount={postData.length}/>
+                <ButtonSelector handleToUpdate={changeDisplayState.bind(this)} activePage={this.state.arg1}/>
                 <InfiniteScroll
                 dataLength={this.state.limit}
                 next={this.fetchMoreData}
