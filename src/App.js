@@ -1,115 +1,29 @@
-import React, { Component } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import ScrollToTop from "react-scroll-to-top";
-import PostImage from './components/new-image-post';
-import ProfileBrief from './components/Profile-Banner/profile-information';
-import ButtonSelector from './components/button-selector';
-import './components/post.css';
-import logo from "./logo.png";
+import React, { Component, Fragment} from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MainFeed from './components/mainFeed';
+import EditContentMain from './components/admin/editContentMain';
 class App extends Component {
     constructor(props) {
-        super(props);
-        this.state={
-            arg1:"posts",
-            error: null,
-            postData: [],
-            display: [],
-            limit: 5,
-            hasMore: true
-        }
+        super(props);        
     }
 
-      //Reads the json file
-    componentDidMount() { 
-        fetch(process.env.PUBLIC_URL + '/dddsexytimedannybabyreccomends69420_donaldducknsfw2021_freedownload_novirus.json')
-          .then(res => res.json())
-          .then(
-            (result) => {
-              this.setState({
-                postData: result.reverse(),
-                display: result.map((p, index) => {if(index < this.state.limit){return <PostImage d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}else{return null;}})
-              });
-            },
-            (error) => {
-              this.setState({
-                error
-              });
-            }
-          )
-        }
-
-    handleToUpdate(){
-        const postData = this.state.postData;
-        var someArg = this.state.arg1;
-        var limit = this.state.limit;
-        if(someArg==="posts"){
-          console.log("ping");
-            this.setState({display:postData.map((p, index) => {if(index < limit){return <PostImage d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}else{return null;}})});
-        }
-        else if(someArg==="media"){
-            this.setState({display:postData.map((p, index) => {if(index < limit){if(p.image==="null"){limit++; return null;}else{return <PostImage d_location={p.download_location} d_name={p.download_name} content={p.description} image={p.image} date={p.date}/>;}}else{return null;}})});
-        }
-        else if(someArg==="archive"){
-            this.setState({display:null});
-        }
-        this.forceUpdate()
-    }
-
-    fetchMoreData = () => {
-      console.log(this.state.limit)
-      if (this.state.limit >= this.state.postData.length) {
-        this.setState({ hasMore: false });
-        return;
-      }
-        this.setState({
-          limit: this.state.limit+5
-        });
-      this.handleToUpdate();
-    };
-
-    changeDisplayState(stateTo){
-      this.setState({arg1: stateTo, limit:5, hasMore:true}, function() {
-        this.handleToUpdate();
-      });
-    }
-
+    
     render() { 
-        const { error, postData} = this.state;
-        var changeDisplayState = this.changeDisplayState;
-        if (error) {
-            return <div>
-                <h2>ERROR</h2>
-                <h3>{error.message}</h3>
-                <h1>Lol did you really think Dan would be able to program</h1>
-                </div>;
-          }
-        else{
             return ( 
+              <Router>
                 <div>
-                  <ScrollToTop smooth/>
-                <div className="content">
-                <ProfileBrief name="Dan Lee" username="@dan-lee76" dsc="The onlydans exclusive site owner ;)" image={logo} post_amount={postData.length}/>
-                <ButtonSelector handleToUpdate={changeDisplayState.bind(this)} activePage={this.state.arg1}/>
-                <InfiniteScroll
-                dataLength={this.state.limit}
-                next={this.fetchMoreData}
-                hasMore={this.state.hasMore}
-                loader={<h4>Loading...</h4>}
-                endMessage={
-                  <p style={{ textAlign: "center" }}>
-                    <b>Yay! You have seen it all</b>
-                  </p>
-                }
-              >
-
-                {this.state.display}   
-
-                </InfiniteScroll>
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/admin">admin</a></li>
+                </ul>
+                  <Routes>
+                    <Route path="/" element={<MainFeed/>}/>
+                    <Route path="/admin" element={<EditContentMain/>}/>
+                  </Routes>
                 </div>
-                </div>
+                </Router>
             );
         }
     }
-}
 
 export default App;
