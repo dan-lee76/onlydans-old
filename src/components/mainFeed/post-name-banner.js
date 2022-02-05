@@ -5,9 +5,38 @@ import "./post.css"
 class Post_banner extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+            date: null
+         }
     }
+
+    dateSort(){
+        let date = this.props.date;
+        var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+        var day = parseInt(date.substring(0,date.indexOf("/")))
+        if(isNaN(day)){
+            return date
+        }
+        var month = parseInt(date.substring(date.indexOf("/")+1,date.lastIndexOf("/")))
+        var year = parseInt(date.substring(date.lastIndexOf("/")+1,date.length))
+        var wordMonth = months[month-1].substring(0,3)
+        var currentYear = parseInt(new Date().getFullYear().toString().substr(-2))
+        console.log(day,wordMonth,year, currentYear)
+        if(year !== currentYear){
+            return (wordMonth+' '+day+' '+year)
+        }
+        else{
+            return (wordMonth+' '+day)
+        }
+
+    }
+
+    componentDidMount() { 
+        const date = this.dateSort();
+        this.setState({date:date})
+        }
     render() { 
+        
         return ( 
             <div>
             <div className={styles.banner}>
@@ -19,7 +48,7 @@ class Post_banner extends Component {
                 </div>
                 </div>
                 <div className={styles.right}>
-                <h1 className={styles.secondaryText}>{this.props.date}</h1>
+                <h1 className={styles.secondaryText}>{this.state.date}</h1>
                 </div>
                 </div>
             </div>
