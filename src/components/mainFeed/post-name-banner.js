@@ -13,16 +13,17 @@ class Post_banner extends Component {
     dateSort(){
         let date = this.props.date;
         var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
-        var day = parseInt(date.substring(0,date.indexOf("/")))
-        if(isNaN(day)){
+        var year = parseInt(date.substring(0,date.indexOf("-")))
+        if(isNaN(year)){
             return date
         }
-        var month = parseInt(date.substring(date.indexOf("/")+1,date.lastIndexOf("/")))
-        var year = parseInt(date.substring(date.lastIndexOf("/")+1,date.length))
+        var month = parseInt(date.substring(date.indexOf("-")+1,date.lastIndexOf("-")))
+        var day = parseInt(date.substring(date.lastIndexOf("-")+1,date.length))
         var wordMonth = months[month-1].substring(0,3)
-        var currentYear = parseInt(new Date().getFullYear().toString().substr(-2))
+        var currentYear = new Date().getFullYear()
         console.log(day,wordMonth,year, currentYear)
         if(year !== currentYear){
+            year = parseInt(year.toString().substring(2,4))
             return (wordMonth+' '+day+' '+year)
         }
         else{

@@ -6,14 +6,17 @@ import Add from './addContent.js';
 class EditContentMain extends Component {
     constructor(props) {
         super(props);
-        this.state={};
+        this.state={
+            idLength: 0
+        };
     }
 
     getUserData = () => {
         const dbRef = ref(config);
         get(child(dbRef, `/`)).then((snapshot) => {
           if (snapshot.exists()) {
-            console.log(snapshot.val());
+            console.log("Setting Value: ", snapshot.val().length);
+            this.setState({idLength: snapshot.val().length})
           }
           else {
             console.log("No data available");
@@ -27,15 +30,15 @@ class EditContentMain extends Component {
       
   
         //Reads the json file
-      componentDidMount() { 
-          this.getUserData();
-          }
+        componentDidMount() { 
+            this.getUserData();
+            }
     
 
     render() { 
         return ( <div>
             <h1>Data Editor </h1>
-            <Add></Add>
+            <Add idLength={this.state.idLength}></Add>
           </div> );
     }
 }

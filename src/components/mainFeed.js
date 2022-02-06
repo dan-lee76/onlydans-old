@@ -1,4 +1,4 @@
-import React, { Component, Fragment} from 'react';
+import React, { Component} from 'react';
 import config from "./firebase/config.js";
 import { ref, child, get } from "firebase/database";
 import InfiniteScroll from 'react-infinite-scroll-component';
