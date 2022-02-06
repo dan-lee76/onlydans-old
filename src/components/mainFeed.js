@@ -1,11 +1,11 @@
 import React, { Component, Fragment} from 'react';
-import config from "./firebase/config";
+import config from "./firebase/config.js";
 import { ref, child, get } from "firebase/database";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ScrollToTop from "react-scroll-to-top";
-import PostImage from './mainFeed/new-image-post';
-import ProfileBrief from './mainFeed/Profile-Banner/profile-information';
-import ButtonSelector from './mainFeed/button-selector';
+import PostImage from './mainFeed/new-image-post.js';
+import ProfileBrief from './mainFeed/Profile-Banner/profile-information.js';
+import ButtonSelector from './mainFeed/button-selector.js';
 import './mainFeed/post.css';
 import logo from "./../logo.png";
 class MainFeed extends Component {
@@ -42,7 +42,9 @@ class MainFeed extends Component {
       console.log('DATA RETRIEVED');
     }
 
-    
+    orderUserData(){ //Orders user data based on date
+
+    }
 
       //Reads the json file
     componentDidMount() { 
@@ -83,28 +85,6 @@ class MainFeed extends Component {
         this.handleToUpdate();
       });
     };
-
-    home = () => {
-      <Fragment>
-      <ProfileBrief name="Dan Lee" username="@dan-lee76" dsc="The onlydans exclusive site owner ;)" image={logo} post_amount={this.state.postData.length}/>
-      <ButtonSelector handleToUpdate={this.changeDisplayState.bind(this)} activePage={this.state.arg1}/>
-      <InfiniteScroll
-      dataLength={this.state.limit}
-      next={this.fetchMoreData}
-      hasMore={this.state.hasMore}
-      loader={<h4>Loading...</h4>}
-      endMessage={
-        <p style={{ textAlign: "center" }}>
-          <b>Yay! You have seen it all</b>
-        </p>
-      }
-    >
-    
-      {this.state.display}   
-    
-      </InfiniteScroll>
-      </Fragment>
-    }
 
     render() { 
         const { error, postData} = this.state;

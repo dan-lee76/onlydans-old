@@ -1,7 +1,7 @@
 import React, { Component, Fragment} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainFeed from './components/mainFeed';
-import EditContentMain from './components/admin/editContentMain';
+import MainFeed from './components/mainFeed.js';
+import EditContentMain from './components/admin/editContentMain.js';
 class App extends Component {
     constructor(props) {
         super(props);        

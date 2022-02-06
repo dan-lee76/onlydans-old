@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PostBanner from './post-name-banner';
-import PostFooter from './post-footer';
+import PostBanner from './post-name-banner.js';
+import PostFooter from './post-footer.js';
 import styles from './new-image-post.module.css'
 import "./post.css"
 class Post_Image extends Component {

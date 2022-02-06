@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Post_banner from './post-name-banner';
+import Post_banner from './post-name-banner.js';
 import "./post.css"
 class Post extends Component {
     constructor(props) {

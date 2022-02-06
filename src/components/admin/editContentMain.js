@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
-import config from "./../firebase/config";
+import config from "./../firebase/config.js";
 import { ref, child, get } from "firebase/database";
-import Add from './addContent';
+import Add from './addContent.js';
 
 class EditContentMain extends Component {
     constructor(props) {
